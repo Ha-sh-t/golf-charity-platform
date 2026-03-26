@@ -79,17 +79,17 @@ export default function Dashboard() {
   };
 
   // ---------------- AUTH CHECK ----------------
-  useEffect(() => {
+useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      navigate("/");
-      return;
+        navigate("/");
+        return;
     }
 
     fetchProfile();
     fetchCharities();
-  }, []);
+}, [navigate]);
 
   // ---------------- UI ----------------
   return (
