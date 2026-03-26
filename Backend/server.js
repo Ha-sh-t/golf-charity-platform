@@ -34,6 +34,7 @@ app.use("/api/draw", drawRoutes);
 app.use("/api/charity", charityRoutes);
 
 // test route
+app.use("/" , (req,res)=>{res.send("API is running..")});
 app.use((req , res)=>{res.send("Route not found ...")})
 const PORT = process.env.PORT || 5000;
 
