@@ -13,24 +13,6 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   // ---------------- API CALLS ----------------
-  const fetchProfile = async () => {
-    try {
-      const res = await API.get("/user/profile");
-      setScores(res.data.scores || []);
-      setSelectedCharity(res.data.charity || "");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchCharities = async () => {
-    try {
-      const res = await API.get("/charity");
-      setCharities(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleAddScore = async () => {
     if (newScore < 1 || newScore > 45) {
@@ -88,9 +70,28 @@ useEffect(() => {
         return;
     }
 
+    // Define them inside so they aren't external dependencies
+    const fetchProfile = async () => {
+        try {
+            const res = await API.get("/user/profile");
+            setScores(res.data.scores || []);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const fetchCharities = async () => {
+        try {
+            const res = await API.get("/charity");
+            setCharities(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     fetchProfile();
     fetchCharities();
-}, [navigate]);
+}, [navigate]); // navigate is the only external dependency now
 
   // ---------------- UI ----------------
   return (
