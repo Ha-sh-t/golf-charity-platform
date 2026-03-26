@@ -79,6 +79,7 @@ export default function Dashboard() {
   };
 
   // ---------------- AUTH CHECK ----------------
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 useEffect(() => {
     const token = localStorage.getItem("token");
 
